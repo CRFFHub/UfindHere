@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HereUfind - Produtos e Serviços</title>
+    <meta name="description" content="Encontre indicações de profissionais de confiança divididos por áreas: Construção e Reforma, Assessoria Jurídica e Contábil, Limpeza, Saúde, Auto Oficinas, Fretes e Tecnologia.">
+    <style>
+        /* Estilos Gerais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Botão de Anúncio no Topo */
+        .header-cta {
+            display: inline-block;
+            background-color: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .header-cta:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-label {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* 1. Grid de Grupos Principais */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .group-btn {
+            background-color: #ffffff;
+            color: #1e3a8a;
+            border: 2px solid #cbd5e1;
+            padding: 1.3rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .group-btn span.icon {
+            font-size: 1.8rem;
+        }
+
+        .group-btn:hover {
+            border-color: #1e3a8a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(30, 58, 138, 0.12);
+        }
+
+        .group-btn.active {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border-color: #1e3a8a;
+        }
+
+        /* 2. Painel de Subgrupos */
+        #subgroupsSection {
+            display: none;
+            background-color: #e0e7ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .subgroups-header {
+            text-align: center;
+            color: #1e3a8a;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .subgroups-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .subgroup-btn {
+            background-color: #ffffff;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .subgroup-btn:hover, .subgroup-btn.active {
+            background-color: #1e3a8a;
+            color: #ffffff;
+        }
+
+        /* 3. Painel de Profissionais */
+        #resultsSection {
+            display: none;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #1e3a8a;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .results-header h2 {
+            color: #1e3a8a;
+            font-size: 1.4rem;
+        }
+
+        .btn-close {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn-close:hover {
+            background-color: #dc2626;
+        }
+
+        /* Barra de Busca Interna */
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #1e3a8a;
+        }
+
+        /* Grid de Profissionais */
+        .professionals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p.bio {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            border-top: 1px solid #cbd5e1;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phone {
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .btn-whatsapp {
+            background-color: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #15803d;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-size: 1rem;
+            padding: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HereUfind - Produtos e Serviços</h1>
+        <p>Escolha uma categoria abaixo para encontrar especialistas recomendados</p>
+        <!-- Botão rápido no topo -->
+        <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber como faço para anunciar e entrar na lista de profissionais do HereUFind." target="_blank" class="header-cta">📢 Quer entrar na lista? Anuncie aqui</a>
+    </header>
+
+    <main class="container">
+        <h2 class="section-label">1. Selecione a área desejada:</h2>
+
+        <!-- 1. Grupos Principais -->
+        <div class="groups-grid" id="groupsContainer">
+            <!-- Gerado automaticamente pelo JavaScript -->
+        </div>
+
+        <!-- 2. Subgrupos (Profissões) -->
+        <section id="subgroupsSection">
+            <div class="subgroups-header" id="subgroupsTitle">2. Escolha a especialidade:</div>
+            <div class="subgroups-list" id="subgroupsContainer">
+                <!-- Gerado automaticamente pelo JavaScript -->
+            </div>
+        </section>
+
+        <!-- 3. Lista de Profissionais -->
+        <section id="resultsSection">
+            <div class="results-header">
+                <h2 id="selectedSubgroupTitle">Profissionais</h2>
+                <button class="btn-close" id="closeAllBtn">✕ Fechar lista</button>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Filtrar dentro desta especialidade por nome ou serviço...">
+            </div>
+
+            <div class="professionals-grid" id="professionalsList">
+                <!-- Cards dos profissionais -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CRFFHub - HereUFind Produtos e Serviços. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // ESTRUTURA DE GRUPOS E SUBGRUPOS
+        const estruturaCategorias = [
+            {
+                grupo: "Construção, Reforma e Decoração",
+                icone: "🏗️",
+                subgrupos: ["Engenheiros", "Arquitetos", "Pedreiros", "Vidraceiros", "Gesseiros"]
+            },
+            {
+                grupo: "Assessoria Contábil e Jurídica",
+                icone: "⚖️",
+                subgrupos: ["Contadores", "Advogados"]
+            },
+            {
+                grupo: "Limpeza e Organização",
+                icone: "✨",
+                subgrupos: ["Faxineira", "Designer","Personal Organizer"]
+            },
+            {
+                grupo: "Saúde e Beleza",
+                icone: "💆",
+                subgrupos: ["Fisioterapeuta","Psicologia", "Nutricionistas", "Personal Trainer", "Manicure", "Cabeleireiro","Cosméticos e Perfumaria"]
+            },
+            {
+                grupo: "Auto Oficinas",
+                icone: "🚗",
+                subgrupos: ["Auto Elétrica", "Mecânico", "Borracharia"]
+            },
+            {
+                grupo: "Fretes e Delivery",
+                icone: "🚚",
+                subgrupos: ["Motoboy", "Carreto", "Perua Escolar", "Uber", "Taxistas"]
+            },
+            {
+                grupo: "Tecnologia e Manutenção",
+                icone: "💻",
+                subgrupos: ["Conserto Celular", "Suporte Tecnologia"]
+            }
+        ];
+
+        // BANCO DE DADOS DOS PROFISSIONAIS
+        const profissionais = [
+            // Construção, Reforma e Decoração
+            {
+                nome: "Eng. Fernando Souza",
+                subgrupo: "Engenheiros",
+                telefone: "(11) 96655-4433",
+                whatsapp: "5511966554433",
+                resumo: "Engenheiro Civil foco em laudos estruturais, acompanhamento de obras e emissão de ART."
+            },
+            {
+                nome: "Mariana Costa",
+                subgrupo: "Arquitetos",
+                telefone: "(11) 98765-4321",
+                whatsapp: "5511987654321",
+                resumo: "Arquiteta com 8 anos de experiência em projetos residenciais, design de interiores e reformas."
+            },
+            {
+                nome: "José Carlos da Silva",
+                subgrupo: "Pedreiros",
+                telefone: "(11) 97766-5544",
+                whatsapp: "5511977665544",
+                resumo: "Mestre de obras especialista em alvenaria, assentamento de pisos, porcelanato e reboco."
+            },
+            {
+                nome: "Vidraçaria Cristal (Ricardo)",
+                subgrupo: "Vidraceiros",
+                telefone: "(11) 98811-2233",
+                whatsapp: "5511988112233",
+                resumo: "Instalação de box para banheiro, envidraçamento de sacadas, espelhos e vidros temperados."
+            },
+            {
+                nome: "Gesso Arte (Paulo)",
+                subgrupo: "Gesseiros",
+                telefone: "(11) 98822-3344",
+                whatsapp: "5511988223344",
+                resumo: "Forros de drywall, sancas abertas e fechadas, molduras e divisórias acústicas."
+            },
+
+            // Assessoria Contábil e Jurídica
+            {
+                nome: "Carlos Contabilidade & Gestão",
+                subgrupo: "Contadores",
+                telefone: "(11) 99911-0022",
+                whatsapp: "5511999110022",
+                resumo: "Abertura de empresas, planejamento tributário, Simples Nacional, MEI e Imposto de Renda."
+            },
+            {
+                nome: "Dr. Roberto Almeida",
+                subgrupo: "Advogados",
+                telefone: "(11) 91234-5678",
+                whatsapp: "5511912345678",
+                resumo: "Especialista em Direito Civil, elaboração de contratos e regularização de imóveis."
+            },
+
+            // Limpeza e Organização
+            {
+                nome: "Dona Maria Aparecida",
+                subgrupo: "Faxineira",
+                telefone: "(11) 94433-2211",
+                whatsapp: "5511944332211",
+                resumo: "Diarista com ótimas referências. Limpeza residencial pesada, pós-obra e passadoria."
+            },
+            {
+                nome: "Juliana Personal Organizer",
+                subgrupo: "Designer",
+                telefone: "(11) 94455-6677",
+                whatsapp: "5511944556677",
+                resumo: "Organização de closets, cozinhas, mudanças residenciais e otimização de ambientes."
+            },
+
+            // Saúde e Beleza
+            {
+                nome: "Dra. Amanda Ribeiro",
+                subgrupo: "Fisioterapeuta",
+                telefone: "(11) 93344-5566",
+                whatsapp: "5511933445566",
+                resumo: "Fisioterapia ortopédica, reabilitação pós-operatória e atendimento domiciliar."
+            },
+            {
+                nome: "Rodrigo Silva - Personal",
+                subgrupo: "Personal Trainer",
+                telefone: "(11) 93355-6677",
+                whatsapp: "5511933556677",
+                resumo: "Treinamento funcional, hipertrofia e condicionamento físico em academias ou condomínios."
+            },
+            {
+                nome: "Guapastore Cosméticos e Acessórios",
+                subgrupo: "Cosméticos e Perfumaria",
+                telefone: "(11) 99534-3247",
+                whatsapp: "5511995343247",
+                resumo: "As melhores marcas em um só lugar:Maquiagem • Perfumes importados  - Produtos 100% ORIGINAIS - Envio para todo o Brasil • Varejo"
+            },
+            {
+                nome: "Salão Estilo & Cor (Marcos)",
+                subgrupo: "Cabeleireiro",
+                telefone: "(11) 93377-8899",
+                whatsapp: "5511933778899",
+                resumo: "Cortes masculinos e femininos, colorimetria, mechas e tratamentos capilares."
+            },
+              {
+                nome: "Indrid",
+                subgrupo: "Psicologia",
+                telefone: "(11) 93366-7788",
+                whatsapp: "5511933667788",
+                resumo: "Manicure, pedicure, esmaltação em gel e spa dos pés com materiais esterilizados."
+            },
+              {
+                nome: "Danilo",
+                subgrupo: "Nutricionistas",
+                telefone: "(11) 93366-7788",
+                whatsapp: "5511933667788",
+                resumo: "Manicure, pedicure, esmaltação em gel e spa dos pés com materiais esterilizados."
+            },
+
+            // Auto Oficinas
+            {
+                nome: "Auto Elétrica Faísca (Jorge)",
+                subgrupo: "Auto Elétrica",
+                telefone: "(11) 92211-3344",
+                whatsapp: "5511922113344",
+                resumo: "Troca de baterias, alternadores, motor de partida, rastreamento de panes elétricas e som."
+            },
+            {
+                nome: "Oficina do Marcos",
+                subgrupo: "Mecânico",
+                telefone: "(11) 95544-3322",
+                whatsapp: "5511955443322",
+                resumo: "Mecânica geral para veículos nacionais e importados. Revisão preventiva, freios e suspensão."
+            },
+            {
+                nome: "Borracharia 24h União",
+                subgrupo: "Borracharia",
+                telefone: "(11) 92233-4455",
+                whatsapp: "5511922334455",
+                resumo: "Conserto de pneus, vulcanização, balanceamento e socorro móvel na região."
+            },
+
+            // Fretes e Delivery
+            {
+                nome: "Diego Express",
+                subgrupo: "Motoboy",
+                telefone: "(11) 91122-3344",
+                whatsapp: "5511911223344",
+                resumo: "Entregas rápidas de documentos, encomendas pequenas e serviços de cartório/banco."
+            },
+            {
+                nome: "Carretos & Mudanças São Paulo (Antônio)",
+                subgrupo: "Carreto",
+                telefone: "(11) 91133-4455",
+                whatsapp: "5511911334455",
+                resumo: "Caminhão baú e utilitário para pequenas mudanças, transporte de móveis e eletrodomésticos."
+            },
+            {
+                nome: "Tio Sérgio Transporte Escolar",
+                subgrupo: "Perua Escolar",
+                telefone: "(11) 91144-5566",
+                whatsapp: "5511911445566",
+                resumo: "Transporte escolar credenciado com monitora, ar-condicionado e total segurança."
+            },
+            {
+                nome: "Motorista Particular - Leandro",
+                subgrupo: "Uber",
+                telefone: "(11) 91155-6677",
+                whatsapp: "5511911556677",
+                resumo: "Viagens agendadas para aeroportos, rodoviárias e deslocamentos executivos com carro sedan."
+            },
+            {
+                nome: "Ponto Táxi Central (Sr. Osvaldo)",
+                subgrupo: "Taxistas",
+                telefone: "(11) 91166-7788",
+                whatsapp: "5511911667788",
+                resumo: "Atendimento 24h com hora marcada, aceita cartões e Pix. Conhecimento total da cidade."
+            },
+
+            // Tecnologia e Manutenção
+            {
+                nome: "TechCell Assistência (Rafael)",
+                subgrupo: "Conserto Celular",
+                telefone: "(11) 97711-2233",
+                whatsapp: "5511977112233",
+                resumo: "Troca de telas, baterias, conectores de carga e reparo de placas para Android e iPhone."
+            },
+            {
+                nome: "Lucas Mendes - TI",
+                subgrupo: "Suporte Tecnologia",
+                telefone: "(11) 99887-7665",
+                whatsapp: "5511998877665",
+                resumo: "Formatação de notebooks, remoção de vírus, configuração de redes Wi-Fi e backup em nuvem."
+            }
+        ];
+
+        // Elementos da tela
+        const groupsContainer = document.getElementById('groupsContainer');
+        const subgroupsSection = document.getElementById('subgroupsSection');
+        const subgroupsTitle = document.getElementById('subgroupsTitle');
+        const subgroupsContainer = document.getElementById('subgroupsContainer');
+        const resultsSection = document.getElementById('resultsSection');
+        const selectedSubgroupTitle = document.getElementById('selectedSubgroupTitle');
+        const professionalsList = document.getElementById('professionalsList');
+        const searchInput = document.getElementById('searchInput');
+        const closeAllBtn = document.getElementById('closeAllBtn');
+
+        let grupoAtual = null;
+        let subgrupoAtual = null;
+
+        function carregarGrupos() {
+            groupsContainer.innerHTML = '';
+            estruturaCategorias.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'group-btn';
+                btn.innerHTML = `<span class="icon">${item.icone}</span><span>${item.grupo}</span>`;
+                
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    abrirSubgrupos(item);
+                });
+
+                groupsContainer.appendChild(btn);
+            });
+        }
+
+        function abrirSubgrupos(itemGrupo) {
+            grupoAtual = itemGrupo.grupo;
+            subgrupoAtual = null;
+            resultsSection.style.display = 'none';
+            
+            subgroupsTitle.textContent = `2. Especialidades em "${itemGrupo.grupo}":`;
+            subgroupsContainer.innerHTML = '';
+
+            itemGrupo.subgrupos.forEach(sub => {
+                const subBtn = document.createElement('button');
+                subBtn.className = 'subgroup-btn';
+                subBtn.textContent = sub;
+
+                subBtn.addEventListener('click', () => {
+                    document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+                    subBtn.classList.add('active');
+                    abrirProfissionais(sub);
+                });
+
+                subgroupsContainer.appendChild(subBtn);
+            });
+
+            subgroupsSection.style.display = 'block';
+            subgroupsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function abrirProfissionais(subgrupo) {
+            subgrupoAtual = subgrupo;
+            selectedSubgroupTitle.textContent = `Indicados em: ${subgrupo}`;
+            searchInput.value = '';
+            
+            resultsSection.style.display = 'block';
+            renderizarCards();
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function renderizarCards() {
+            const termo = searchInput.value.toLowerCase();
+            professionalsList.innerHTML = '';
+
+            const filtrados = profissionais.filter(prof => {
+                const mesmoSubgrupo = prof.subgrupo === subgrupoAtual;
+                const bateBusca = prof.nome.toLowerCase().includes(termo) || 
+                                  prof.resumo.toLowerCase().includes(termo);
+                return mesmoSubgrupo && bateBusca;
+            });
+
+            if (filtrados.length === 0) {
+                professionalsList.innerHTML = '<p class="empty-message">Nenhum profissional cadastrado nesta especialidade ainda.</p>';
+                return;
+            }
+
+            filtrados.forEach(prof => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div>
+                        <h3>${prof.nome}</h3>
+                        <p class="bio">${prof.resumo}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="phone">📞 ${prof.telefone}</span>
+                        <a href="https://wa.me/${prof.whatsapp}?text=Olá ${prof.nome}, vi sua indicação na área de ${prof.subgrupo} no CRFFHub!" target="_blank" class="btn-whatsapp">WhatsApp</a>
+                    </div>
+                `;
+                professionalsList.appendChild(card);
+            });
+        }
+
+        closeAllBtn.addEventListener('click', () => {
+            resultsSection.style.display = 'none';
+            document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+            subgrupoAtual = null;
+        });
+
+        searchInput.addEventListener('input', renderizarCards);
+
+        carregarGrupos();
+    </script>
+
+</body>
+</html>
