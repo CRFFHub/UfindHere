@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFindHere</title>
+    <meta name="description" content="Encontre profissionais, produtos e oportunidades de compra e venda: Imóveis, Automóveis, Construção, Assessoria, Limpeza, Saúde, Auto Oficinas, Transporte, Tecnologia e Gastronomia.">
+    <style>
+        /* Estilos Gerais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Botão de Anúncio no Topo */
+        .header-cta {
+            display: inline-block;
+            background-color: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .header-cta:hover {
+            background-color: #15803d;
+            transform: translateY(-2px);
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-label {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* 1. Grid de Grupos Principais */
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .group-btn {
+            background-color: #ffffff;
+            color: #1e3a8a;
+            border: 2px solid #cbd5e1;
+            padding: 1.3rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .group-btn span.icon {
+            font-size: 1.8rem;
+        }
+
+        .group-btn:hover {
+            border-color: #1e3a8a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(30, 58, 138, 0.12);
+        }
+
+        .group-btn.active {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            border-color: #1e3a8a;
+        }
+
+        /* 2. Painel de Subgrupos */
+        #subgroupsSection {
+            display: none;
+            background-color: #e0e7ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .subgroups-header {
+            text-align: center;
+            color: #1e3a8a;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .subgroups-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .subgroup-btn {
+            background-color: #ffffff;
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .subgroup-btn:hover, .subgroup-btn.active {
+            background-color: #1e3a8a;
+            color: #ffffff;
+        }
+
+        /* 3. Painel de Resultados */
+        #resultsSection {
+            display: none;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 5px solid #1e3a8a;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .results-header h2 {
+            color: #1e3a8a;
+            font-size: 1.4rem;
+        }
+
+        .btn-close {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn-close:hover {
+            background-color: #dc2626;
+        }
+
+        /* Barra de Busca Interna */
+        .search-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #1e3a8a;
+        }
+
+        /* Grid de Cards */
+        .professionals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+        }
+
+        .region-badge {
+            display: inline-block;
+            background-color: #e0e7ff;
+            color: #1e3a8a;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Estilos para etiquetas de Imóveis e Veículos */
+        .info-badges-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background-color: #dcfce7;
+            color: #166534;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .spec-badge {
+            display: inline-block;
+            background-color: #f1f5f9;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .card p.bio {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            border-top: 1px solid #cbd5e1;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .card-main-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phone {
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .btn-whatsapp {
+            background-color: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #15803d;
+        }
+
+        /* Seção secundária para Instagram e E-mail abaixo do WhatsApp */
+        .card-extra-links {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 0.6rem;
+        }
+
+        .btn-social {
+            text-decoration: none;
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn-instagram {
+            background-color: #e1306c;
+            color: white;
+        }
+
+        .btn-instagram:hover {
+            background-color: #c13584;
+        }
+
+        .btn-email {
+            background-color: #475569;
+            color: white;
+        }
+
+        .btn-email:hover {
+            background-color: #334155;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-size: 1rem;
+            padding: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>UfindHere</h1>
+        <p>Encontre profissionais, produtos e oportunidades de compra e venda</p>
+        <!-- Botão rápido no topo -->
+        <a href="https://wa.me/5511954544739?text=Olá! Gostaria de saber como faço para anunciar e entrar na lista do UfindHere." target="_blank" class="header-cta">📢 Quer entrar na lista? Anuncie aqui</a>
+    </header>
+
+    <main class="container">
+        <h2 class="section-label">1. Selecione a área desejada:</h2>
+
+        <!-- 1. Grupos Principais -->
+        <div class="groups-grid" id="groupsContainer">
+            <!-- Gerado automaticamente pelo JavaScript -->
+        </div>
+
+        <!-- 2. Subgrupos -->
+        <section id="subgroupsSection">
+            <div class="subgroups-header" id="subgroupsTitle">2. Escolha a especialidade:</div>
+            <div class="subgroups-list" id="subgroupsContainer">
+                <!-- Gerado automaticamente pelo JavaScript -->
+            </div>
+        </section>
+
+        <!-- 3. Lista de Resultados -->
+        <section id="resultsSection">
+            <div class="results-header">
+                <h2 id="selectedSubgroupTitle">Indicados</h2>
+                <button class="btn-close" id="closeAllBtn">✕ Fechar lista</button>
+            </div>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Filtrar por nome, região, valor ou descrição...">
+            </div>
+
+            <div class="professionals-grid" id="professionalsList">
+                <!-- Cards gerados dinamicamente -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CRFFHub - UfindHere Produtos e Serviços. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // ESTRUTURA DE GRUPOS E SUBGRUPOS
+        const estruturaCategorias = [
+            {
+                grupo: "Imóveis e Terrenos",
+                icone: "🏢",
+                subgrupos: ["Casas à Venda", "Apartamentos", "Terrenos e Lotes", "Locação Residencial", "Locação Comercial"]
+            },
+            {
+                grupo: "Automóveis e Veículos",
+                icone: "🚗",
+                subgrupos: ["Carros", "Motos", "Utilitários e Carretas", "Peças e Acessórios"]
+            },
+            {
+                grupo: "Construção, Reforma e Decoração",
+                icone: "🏗️",
+                subgrupos: ["Engenheiros", "Arquitetos", "Pedreiros", "Vidraceiros", "Gesseiros", "Pintores"]
+            },
+            {
+                grupo: "Assessoria Contábil e Jurídica",
+                icone: "⚖️",
+                subgrupos: ["Contadores", "Advogados"]
+            },
+            {
+                grupo: "Limpeza e Organização",
+                icone: "✨",
+                subgrupos: ["Faxineira", "Designer", "Personal Organizer"]
+            },
+            {
+                grupo: "Saúde e Beleza",
+                icone: "💆",
+                subgrupos: ["Fisioterapeuta", "Psicologia", "Nutricionistas", "Personal Trainer", "Manicure", "Cabeleireiro", "Cosméticos e Perfumaria"]
+            },
+            {
+                grupo: "Auto Oficinas",
+                icone: "🔧",
+                subgrupos: ["Auto Elétrica", "Mecânico", "Borracharia"]
+            },
+            {
+                grupo: "Transporte e Logística",
+                icone: "🚚",
+                subgrupos: [
+                    "Táxi e Aplicativo", 
+                    "Vans e Fretados", 
+                    "Ônibus e Viagens", 
+                    "Entregas e Mudanças"
+                ]
+            },
+            {
+                grupo: "Tecnologia e Manutenção",
+                icone: "💻",
+                subgrupos: ["Conserto Celular", "Suporte Tecnologia"]
+            },
+            {
+                grupo: "Gastronomia e Alimentação",
+                icone: "🍽️",
+                subgrupos: ["Bolos, Doces e Confeitaria", "Salgados e Festas", "Marmitas e Refeições", "Restaurantes e Lanches"]
+            }
+        ];
+
+        // BANCO DE DADOS DOS PROFISSIONAIS E OPORTUNIDADES
+        const profissionais = [
+            // Imóveis e Terrenos
+            {
+                nome: "Mini Chácara - Terreno em Mairiporã (1.175 m²)",
+                subgrupo: "Terrenos e Lotes",
+                regiao: "Mairiporã - SP",
+                valor: "R$ 170.000,00",
+                ano: "",
+                km: "",
+                telefone: "(11) 93715-6188",
+                whatsapp: "5511937156188",
+                instagram: "", 
+                email: "",
+                resumo: "A 30 minutos de São Paulo - Área 20% plana, portão de ferro, rodapé murado, espaço garagem, edícula 2 cômodos, chiqueiro/galinheiro, água/luz regularizadas e árvores frutíferas - 300 pés de café. Falar com Eduardo."
+            },
+
+            // Automóveis e Veículos
+            {
+                nome: "",
+                subgrupo: "",
+                regiao: "Zona Norte - São Paulo",
+                valor: "R$ 68.500,00",
+                ano: "2021/2022",
+                km: "45.000 km",
+                telefone: "(11) 95454-4739",
+                whatsapp: "5511954544739",
+                instagram: "", 
+                email: "",
+                resumo: "Carro em excelente estado, revisões na concessionária, único dono, completo com multimídia e chave reserva."
+            },
+
+            // Construção, Reforma e Decoração
+            {
+                nome: "Eng. Pedro Henrique Trindade",
+                subgrupo: "Engenheiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98237-9649",
+                whatsapp: "5511982379649",
+                instagram: "",
+                email: "",
+                resumo: "Engenheiro Civil foco em laudos estruturais, acompanhamento de obras e emissão de ART."
+            },
+            {
+                nome: "Trado Arquitetura (Thiago Prado)",
+                subgrupo: "Arquitetos",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 97898-7997",
+                whatsapp: "5511978987997",
+                instagram: "tradoarquitetura",
+                email: "",
+                resumo: "Arquiteto com experiência em projetos residenciais, design de interiores e reformas."
+            },
+            {
+                nome: "DBA Reformas (Donizete)",
+                subgrupo: "Pedreiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98535-3438",
+                whatsapp: "5511985353438",
+                instagram: "",
+                email: "",
+                resumo: "Mestre de obras especialista em alvenaria, assentamento de pisos, porcelanato e reboco."
+            },
+            {
+                nome: "RBA Reformas (Rodrigo)",
+                subgrupo: "Pedreiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 95924-2997",
+                whatsapp: "5511959242997",
+                instagram: "",
+                email: "",
+                resumo: "Mestre de obras especialista em alvenaria, assentamento de pisos, porcelanato e reboco."
+            },
+            {
+                nome: "Santa Reformas (Severino)",
+                subgrupo: "Pedreiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98238-2195",
+                whatsapp: "5511982382195",
+                instagram: "",
+                email: "",
+                resumo: "Especialista em alvenaria, assentamento de pisos, porcelanato e reboco."
+            },
+            {
+                nome: "DHD Vidros (Denis)",
+                subgrupo: "Vidraceiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 96834-7799",
+                whatsapp: "5511968347799",
+                instagram: "",
+                email: "",
+                resumo: "Instalação de box para banheiro, envidraçamento de sacadas, espelhos e vidros temperados."
+            },
+            {
+                nome: "Gil Gesseiro",
+                subgrupo: "Gesseiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98061-7085",
+                whatsapp: "5511980617085",
+                instagram: "",
+                email: "",
+                resumo: "Forros de drywall, sancas abertas e fechadas, molduras e divisórias acústicas."
+            },
+            {
+                nome: "Vagner Pinturas",
+                subgrupo: "Pintores",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 97503-9563",
+                whatsapp: "5511975039563",
+                instagram: "",
+                email: "",
+                resumo: "Pintura residencial e comercial, texturas, aplicação de massa corrida e acabamentos finos."
+            },
+
+            // Assessoria Contábil e Jurídica
+            {
+                nome: "Menezes O Contador",
+                subgrupo: "Contadores",
+                regiao: "São Paulo e Atendimento Online",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 96556-0431",
+                whatsapp: "5511965560431",
+                instagram: "linkedin.com/in/menezesocontador",
+                email: "menezeselourenco@gmail.com",
+                resumo: "mais de 17 anos de experiência, especialista na Creator Economy e fundador do Grupo Menezes. Assessoria contábil, financeira e treinamentos empresariais para criadores de conteúdo e empreendedores."
+            },
+            {
+                nome: "Dr. Renan Rico Diniz",
+                subgrupo: "Advogados",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98584-8296",
+                whatsapp: "5511985848296",
+                instagram: "@rdiniz.adv/",
+                email: "",
+                resumo: "+ de 10 anos de atuação especializada nas áreas Tributária, Administrativa, Civil e do Consumidor, com foco em treinamentos corporativos (@rrd_treinamentos)."
+            },
+
+            // Limpeza e Organização
+            {
+                nome: "Dona Aparecida",
+                subgrupo: "Faxineira",
+                regiao: "Zona Norte - São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 94433-2211",
+                whatsapp: "5511944332211",
+                instagram: "",
+                email: "",
+                resumo: "Diarista com ótimas referências. Limpeza residencial pesada, pós-obra e passadoria."
+            },
+           
+            // Saúde e Beleza
+            {
+                nome: "We Move Fisioterapia e Pilates",
+                subgrupo: "Fisioterapeuta",
+                regiao: "Zona Norte São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 91739-3502",
+                whatsapp: "5511917393502",
+                instagram: "https://www.instagram.com/wemovefisio",
+                email: "wemovefisio@gmail.com",
+                resumo: "Pilates,Fisioterapia ortopédica, reabilitação pós-operatória e atendimento domiciliar ."
+            },
+            {
+                nome: "Camila Gimenes - Personal",
+                subgrupo: "Personal Trainer",
+                regiao: "Zona Norte - São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11)  95362-0883",
+                whatsapp: "5511953620883",
+                instagram: "",
+                email: "",
+                resumo: "Treinamento funcional, hipertrofia e condicionamento físico em academias ou condomínios."
+            },
+            {
+                nome: "Guapastore Cosméticos e Acessórios",
+                subgrupo: "Cosméticos e Perfumaria",
+                regiao: "Todo o Brasil (Envio) / São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 99534-3247",
+                whatsapp: "5511995343247",
+                instagram: "g.uapastore",
+                email: "",
+                resumo: "As melhores marcas em um só lugar: Maquiagem • Perfumes importados - Produtos 100% ORIGINAIS - Envio para todo o Brasil • Varejo"
+            },
+            {
+                nome: "Salão Casa Nova (Alex)",
+                subgrupo: "Cabeleireiro",
+                regiao: "Zona Norte - São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 93377-8899",
+                whatsapp: "5511933778899",
+                instagram: "",
+                email: "",
+                resumo: "Cortes masculinos,barba,dreads."
+            },
+            {
+                nome: "Cristina",
+                subgrupo: "Psicologia",
+                regiao: "Atendimento Online e Presencial",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 99443-8072",
+                whatsapp: "5511994438072",
+                instagram: "",
+                email: "",
+                resumo: "Atendimento psicológico clínico para adolescentes e adultos."
+            },
+            {
+                nome: "Danilo Grizilli",
+                subgrupo: "Nutricionistas",
+                regiao: "Atendimento Online e Presencial",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 97645-8683",
+                whatsapp: "5511976458683",
+                instagram: "",
+                email: "",
+                resumo: "Reeducação alimentar, nutrição esportiva e emagrecimento saudável."
+            },
+
+            // Auto Oficinas
+                        {
+                nome: "Oficina do Marcos",
+                subgrupo: "Mecânico",
+                regiao: "Vila Galvão - Guarulhos, Zona Norte - São Paulo e Região",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 94004-2505",
+                whatsapp: "5511940042505",
+                instagram: "",
+                email: "",
+                resumo: "Mecânica geral para veículos nacionais e importados. Revisão preventiva, freios e suspensão."
+            },
+            {
+                nome: "DIGO AUTOMECANICA",
+                subgrupo: "Mecânico",
+                regiao: "Sefredo Fagundes 712 -Zona Norte - São Paulo e Região -",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 2203-3760",
+                whatsapp: "5511976717839",
+                instagram: "",
+                email: "",
+                resumo: "Mecânica geral para veículos nacionais e importados. Revisão preventiva, freios e suspensão."
+
+            },
+
+            // Transporte e Logística (Atualizado com a Opção 2)
+            {
+                nome: "Pedro Delivery",
+                subgrupo: "Entregas e Mudanças",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 94699-9003",
+                whatsapp: "5511946999003",
+                instagram: "",
+                email: "",
+                resumo: "Entregas rápidas de documentos, encomendas pequenas e serviços de cartório/banco."
+            },
+                        {
+                nome: "Tia Gleide Transporte Escolar",
+                subgrupo: "Vans e Fretados",
+                regiao: "Zona Norte - São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 95104-8661",
+                whatsapp: "5511951048661",
+                instagram: "",
+                email: "",
+                resumo: "Transporte escolar credenciado com monitora, ar-condicionado e total segurança."
+            },
+            {
+                nome: "Van Executiva - Leonardo",
+                subgrupo: "Vans e Fretados",
+                regiao: "Grande São Paulo, Interior, Litoral",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 94745-6377",
+                whatsapp: "5511947456377",
+                instagram: "",
+                email: "",
+                resumo: "Transporte de Passageiros com Van executiva e fretamento."
+            },
+
+            // Tecnologia e Manutenção
+            
+            {
+                nome: "BaruSolutions",
+                subgrupo: "Suporte Tecnologia",
+                regiao: "Grande São Paulo e Remoto",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 93077-4434",
+                whatsapp: "5511930774434",
+                instagram: "suportebarusolutions",
+                email: "",
+                resumo: "Formatação de notebooks, remoção de vírus, configuração de redes Wi-Fi e backup em nuvem."
+            },
+
+            // Gastronomia e Alimentação
+            {
+                nome: "Petite Loli e Belle Amélie - Cestas, Bolos & Doces",
+                subgrupo: "Bolos, Doces e Confeitaria",
+                regiao: "São Paulo - Guarulhos e Região (A consultar)",
+                valor: "",
+                ano: "",
+                km: "",
+                telefone: "(11) 98665-8659",
+                whatsapp: "5511986658659",
+                instagram: "petiteloliebelleamelie",
+                email: "",
+                resumo: "Memória afetiva em formato de doces, presentes e momentos. Carrinho gourmet / presentes / confeitaria."
+            }
+        ];
+
+        // Elementos da tela
+        const groupsContainer = document.getElementById('groupsContainer');
+        const subgroupsSection = document.getElementById('subgroupsSection');
+        const subgroupsTitle = document.getElementById('subgroupsTitle');
+        const subgroupsContainer = document.getElementById('subgroupsContainer');
+        const resultsSection = document.getElementById('resultsSection');
+        const selectedSubgroupTitle = document.getElementById('selectedSubgroupTitle');
+        const professionalsList = document.getElementById('professionalsList');
+        const searchInput = document.getElementById('searchInput');
+        const closeAllBtn = document.getElementById('closeAllBtn');
+
+        let grupoAtual = null;
+        let subgrupoAtual = null;
+
+        function carregarGrupos() {
+            groupsContainer.innerHTML = '';
+            estruturaCategorias.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'group-btn';
+                btn.innerHTML = `<span class="icon">${item.icone}</span><span>${item.grupo}</span>`;
+                
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    abrirSubgrupos(item);
+                });
+
+                groupsContainer.appendChild(btn);
+            });
+        }
+
+        function abrirSubgrupos(itemGrupo) {
+            grupoAtual = itemGrupo.grupo;
+            subgrupoAtual = null;
+            resultsSection.style.display = 'none';
+            
+            subgroupsTitle.textContent = `2. Opções em "${itemGrupo.grupo}":`;
+            subgroupsContainer.innerHTML = '';
+
+            itemGrupo.subgrupos.forEach(sub => {
+                const subBtn = document.createElement('button');
+                subBtn.className = 'subgroup-btn';
+                subBtn.textContent = sub;
+
+                subBtn.addEventListener('click', () => {
+                    document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+                    subBtn.classList.add('active');
+                    abrirProfissionais(sub);
+                });
+
+                subgroupsContainer.appendChild(subBtn);
+            });
+
+            subgroupsSection.style.display = 'block';
+            subgroupsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function abrirProfissionais(subgrupo) {
+            subgrupoAtual = subgrupo;
+            selectedSubgroupTitle.textContent = `Indicados em: ${subgrupo}`;
+            searchInput.value = '';
+            
+            resultsSection.style.display = 'block';
+            renderizarCards();
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function renderizarCards() {
+            const termo = searchInput.value.toLowerCase();
+            professionalsList.innerHTML = '';
+
+            const filtrados = profissionais.filter(prof => {
+                const mesmoSubgrupo = prof.subgrupo === subgrupoAtual;
+                const regiaoTexto = prof.regiao ? prof.regiao.toLowerCase() : '';
+                const valorTexto = prof.valor ? prof.valor.toLowerCase() : '';
+                const anoTexto = prof.ano ? prof.ano.toLowerCase() : '';
+                const kmTexto = prof.km ? prof.km.toLowerCase() : '';
+                const instagramTexto = prof.instagram ? prof.instagram.toLowerCase() : '';
+                const emailTexto = prof.email ? prof.email.toLowerCase() : '';
+
+                const bateBusca = prof.nome.toLowerCase().includes(termo) || 
+                                  prof.resumo.toLowerCase().includes(termo) ||
+                                  regiaoTexto.includes(termo) ||
+                                  valorTexto.includes(termo) ||
+                                  anoTexto.includes(termo) ||
+                                  kmTexto.includes(termo) ||
+                                  instagramTexto.includes(termo) ||
+                                  emailTexto.includes(termo);
+                return mesmoSubgrupo && bateBusca;
+            });
+
+            if (filtrados.length === 0) {
+                professionalsList.innerHTML = '<p class="empty-message">Nenhum indicado cadastrado nesta opção ainda.</p>';
+                return;
+            }
+
+            filtrados.forEach(prof => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const badgeRegiao = prof.regiao ? `<div class="region-badge">📍 Região Atendida: ${prof.regiao}</div>` : '';
+
+                // Monta as tags de Valor, Ano e KM se estiverem preenchidas
+                let badgesInfoHTML = '';
+                if (prof.valor || prof.ano || prof.km) {
+                    badgesInfoHTML += `<div class="info-badges-container">`;
+                    if (prof.valor) {
+                        badgesInfoHTML += `<span class="price-badge">💰 ${prof.valor}</span>`;
+                    }
+                    if (prof.ano) {
+                        badgesInfoHTML += `<span class="spec-badge">📅 Ano: ${prof.ano}</span>`;
+                    }
+                    if (prof.km) {
+                        badgesInfoHTML += `<span class="spec-badge">🛣️ ${prof.km}</span>`;
+                    }
+                    badgesInfoHTML += `</div>`;
+                }
+
+                // Monta os botões de Instagram e E-mail se estiverem preenchidos
+                let extraLinksHTML = '';
+                if (prof.instagram || prof.email) {
+                    extraLinksHTML += `<div class="card-extra-links">`;
+                    if (prof.instagram) {
+                        const cleanInsta = prof.instagram.replace('@', '').trim();
+                        extraLinksHTML += `<a href="https://instagram.com/${cleanInsta}" target="_blank" class="btn-social btn-instagram">📸 @${cleanInsta}</a>`;
+                    }
+                    if (prof.email) {
+                        extraLinksHTML += `<a href="mailto:${prof.email}" class="btn-social btn-email">✉️ E-mail</a>`;
+                    }
+                    extraLinksHTML += `</div>`;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <h3>${prof.nome}</h3>
+                        ${badgeRegiao}
+                        ${badgesInfoHTML}
+                        <p class="bio">${prof.resumo}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-main-info">
+                            <span class="phone">📞 ${prof.telefone}</span>
+                            <a href="https://wa.me/${prof.whatsapp}?text=Olá ${prof.nome}, vi sua indicação na área de ${prof.subgrupo} no UfindHere!" target="_blank" class="btn-whatsapp">WhatsApp</a>
+                        </div>
+                        ${extraLinksHTML}
+                    </div>
+                `;
+                professionalsList.appendChild(card);
+            });
+        }
+
+        closeAllBtn.addEventListener('click', () => {
+            resultsSection.style.display = 'none';
+            document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+            subgrupoAtual = null;
+        });
+
+        searchInput.addEventListener('input', renderizarCards);
+
+        carregarGrupos();
+    </script>
+
+</body>
+</html>
