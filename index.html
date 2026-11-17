@@ -1406,6 +1406,8 @@
                     extraLinksHTML += `</div>`;
                 }
 
+                const mensagemWhatsApp = encodeURIComponent(`Olá ${prof.nome.trim()}, vi sua indicação na área de ${subgrupoAtual} no UfindHere!`);
+
                 card.innerHTML = `
                     <div>
                         <h3>${prof.nome}</h3>
@@ -1416,7 +1418,7 @@
                     <div class="card-footer">
                         <div class="card-main-info">
                             <span class="phone">📞 ${prof.telefone}</span>
-                            <a href="https://wa.me/${prof.whatsapp}?text=Olá ${prof.nome}, vi sua indicação na área de ${subgrupoAtual} no UfindHere!" target="_blank" class="btn-whatsapp">WhatsApp</a>
+                            <a href="https://wa.me/${prof.whatsapp}?text=${mensagemWhatsApp}" target="_blank" class="btn-whatsapp">WhatsApp</a>
                         </div>
                         ${extraLinksHTML}
                     </div>
