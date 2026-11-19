@@ -388,7 +388,7 @@
         <h1>UfindHere</h1>
         <p>Encontre profissionais, produtos e oportunidades de compra e venda</p>
         <!-- Botão rápido no topo -->
-        <a href="https://wa.me/5511954544739?text=Olá! Gostaria de saber como faço para anunciar e entrar na lista do UfindHere." target="_blank" class="header-cta">📢 Quer entrar na lista? Anuncie aqui</a>
+        <button type="button" onclick="document.getElementById('modalAnuncie').style.display='flex'" class="header-cta" style="border:none; cursor:pointer; font-family:inherit;">📢 Quer entrar na lista? Anuncie aqui</button>
     </header>
 
     <main class="container">
@@ -427,6 +427,29 @@
     <footer>
         <p>&copy; 2026 CRFFHub - UfindHere Produtos e Serviços. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Modal Anuncie Aqui -->
+    <div id="modalAnuncie" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+      <div style="background:#ffffff; max-width:440px; width:100%; border-radius:12px; padding:24px; position:relative; box-shadow:0 10px 25px rgba(0,0,0,0.3); font-family:sans-serif; text-align:left;">
+        <button type="button" onclick="document.getElementById('modalAnuncie').style.display='none'" style="position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; cursor:pointer; color:#666;">&times;</button>
+        
+        <h3 style="margin:0 0 6px 0; color:#0f2a5e; font-size:20px;">Anuncie no UfindHere</h3>
+        <p style="margin:0 0 16px 0; color:#555; font-size:14px;">Preencha seus dados abaixo e entraremos em contato rapidamente.</p>
+
+        <form action="https://api.web3forms.com/submit" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+          <input type="hidden" name="access_key" value="7fd0f40e-6326-46ff-bf8e-53f4c8846450">
+          <input type="hidden" name="subject" value="Novo Interessado em Anunciar - UFindHere">
+          <input type="hidden" name="from_name" value="Site UFindHere">
+
+          <input type="text" name="name" placeholder="Seu nome ou nome do negócio" required style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+          <input type="text" name="whatsapp" placeholder="Seu WhatsApp com DDD (ex: 11 99999-9999)" required style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+          <input type="email" name="email" placeholder="Seu e-mail (opcional)" style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
+          <textarea name="message" rows="3" placeholder="Qual serviço, comércio ou produto você gostaria de divulgar?" required style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px; resize:vertical;"></textarea>
+
+          <button type="submit" style="background:#0f2a5e; color:#ffffff; border:none; padding:12px; border-radius:8px; font-size:15px; font-weight:bold; cursor:pointer;">Enviar Solicitação</button>
+        </form>
+      </div>
+    </div>
 
     <script>
         // ESTRUTURA DE GRUPOS E SUBGRUPOS
