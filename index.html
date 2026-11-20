@@ -1945,6 +1945,55 @@
         searchInput.addEventListener('input', renderizarCards);
 
         carregarGrupos();
+
+     
+     // Direcionamento automático via URL (?grupo=... ou ?subgrupo=...)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const grupoParam = params.get('grupo');
+            const subgrupoParam = params.get('subgrupo');
+
+            const normalizar = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+            if (grupoParam) {
+                const alvoGrupo = normalizar(grupoParam);
+                const botoesGrupo = document.querySelectorAll('#groupsContainer > div, #groupsContainer button');
+                for (let btn of botoesGrupo) {
+                    if (normalizar(btn.textContent).includes(alvoGrupo)) {
+                        btn.click();
+                        btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        break;
+                    }
+                }
+            }
+
+            if (subgrupoParam) {
+                const alvoSub = normalizar(subgrupoParam);
+                const botoesGrupo = document.querySelectorAll('#groupsContainer > div, #groupsContainer button');
+                let encontrou = false;
+
+                for (let btnGrupo of botoesGrupo) {
+                    btnGrupo.click();
+                    const botoesSub = document.querySelectorAll('#subgroupsContainer .subgroup-btn, #subgroupsContainer button, #subgroupsContainer > div');
+
+                    for (let btnSub of botoesSub) {
+                        if (normalizar(btnSub.textContent).includes(alvoSub)) {
+                            btnSub.click();
+                            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                            encontrou = true;
+                            break;
+                        }
+                    }
+                    if (encontrou) break;
+                }
+
+                if (!encontrou) {
+                    closeAllBtn.click();
+                }
+            }
+        });
+
+
     </script>
 
 </body>
