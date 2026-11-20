@@ -1947,7 +1947,7 @@
         carregarGrupos();
 
      
-     // Direcionamento automático via URL (?grupo=... ou ?subgrupo=...)
+// Direcionamento automático via URL e atualização dinâmica ao clicar
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const grupoParam = params.get('grupo');
@@ -1955,6 +1955,42 @@
 
             const normalizar = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 
+            // Função que atualiza a barra de endereço sem recarregar a página
+            const atualizarURL = (tipo, valor) => {
+                const novaUrl = new URL(window.location.origin + window.location.pathname);
+                if (tipo && valor) {
+                    novaUrl.searchParams.set(tipo, valor);
+                }
+                window.history.replaceState({}, '', novaUrl);
+            };
+
+            // 1. Escuta cliques manuais nos Grupos para atualizar a URL
+            document.getElementById('groupsContainer').addEventListener('click', (e) => {
+                const btnGrupo = e.target.closest('div, button');
+                if (btnGrupo && btnGrupo.parentElement.id === 'groupsContainer') {
+                    // Pega o texto limpo do grupo (removendo emojis extras se necessário, ou mantendo o texto)
+                    const nomeGrupo = btnGrupo.innerText.split('\n').pop().trim();
+                    atualizarURL('grupo', nomeGrupo);
+                }
+            });
+
+            // 2. Escuta cliques manuais nos Subgrupos para atualizar a URL
+            document.getElementById('subgroupsContainer').addEventListener('click', (e) => {
+                const btnSub = e.target.closest('.subgroup-btn, button, div');
+                if (btnSub && btnSub.parentElement.id === 'subgroupsContainer') {
+                    const nomeSub = btnSub.textContent.trim();
+                    atualizarURL('subgrupo', nomeSub);
+                }
+            });
+
+            // 3. Limpa a URL quando clicar em "Fechar lista"
+            if (closeAllBtn) {
+                closeAllBtn.addEventListener('click', () => {
+                    atualizarURL(null, null);
+                });
+            }
+
+            // 4. Abre automaticamente se o visitante já chegou por um link direto
             if (grupoParam) {
                 const alvoGrupo = normalizar(grupoParam);
                 const botoesGrupo = document.querySelectorAll('#groupsContainer > div, #groupsContainer button');
@@ -1989,6 +2025,7 @@
 
                 if (!encontrou) {
                     closeAllBtn.click();
+                    atualizarURL(null, null);
                 }
             }
         });
