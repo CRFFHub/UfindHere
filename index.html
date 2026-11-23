@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="hrJPHsfvpS6g1EIneWsSF7GRfx0oHTsN5U9XcMYVu_Q" />
     <link rel="canonical" href="https://ufindhere.com.br/">
-   <meta property="og:url" content="https://ufindhere.com.br/">
+    <meta property="og:url" content="https://ufindhere.com.br/">
     <title>UFindHere</title>
     <meta name="description" content="Encontre profissionais, produtos e oportunidades de compra e venda: Imóveis, Automóveis, Construção, Assessoria, Limpeza, Saúde, Auto Oficinas, Transporte, Tecnologia e Gastronomia.">
     <style>
@@ -80,7 +80,7 @@
         /* 1. Grid de Grupos Principais */
         .groups-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -119,7 +119,7 @@
             border-color: #1e3a8a;
         }
 
-        /* 2. Painel de Subgrupos */
+        /* 2. Painel de Categorias e Subgrupos */
         #subgroupsSection {
             display: none;
             background-color: #e0e7ff;
@@ -135,6 +135,16 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-size: 1.1rem;
+        }
+
+        .categories-sublabel {
+            text-align: center;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 1.1rem 0 0.75rem 0;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(30, 58, 138, 0.18);
         }
 
         .subgroups-list {
@@ -381,11 +391,10 @@
             font-size: 0.9rem;
         }
 
-
-/* Retração de resumo com mais de 14 palavras */
+        /* Retração de resumo com mais de 14 palavras */
         .card p.bio.resumo-retraido {
             display: -webkit-box;
-            -webkit-line-clamp: 3; /* Ajuste para 2, 3 ou 4 linhas conforme preferir */
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             margin-bottom: 0.4rem;
@@ -405,7 +414,6 @@
         .btn-ver-mais:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
@@ -425,11 +433,15 @@
             <!-- Gerado automaticamente pelo JavaScript -->
         </div>
 
-        <!-- 2. Subgrupos -->
+        <!-- 2. Categorias e Subgrupos -->
         <section id="subgroupsSection">
             <div class="subgroups-header" id="subgroupsTitle">2. Escolha a especialidade:</div>
+            <div class="subgroups-list" id="categoriesList" style="display: none;">
+                <!-- Categorias de Produtos e Serviços -->
+            </div>
+            <div id="subgroupsSublabel" class="categories-sublabel" style="display: none;">3. Escolha a especialidade:</div>
             <div class="subgroups-list" id="subgroupsContainer">
-                <!-- Gerado automaticamente pelo JavaScript -->
+                <!-- Subgrupos gerados automaticamente pelo JavaScript -->
             </div>
         </section>
 
@@ -472,16 +484,15 @@
           <input type="email" name="email" placeholder="Seu e-mail (opcional)" style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px;">
           <textarea name="message" rows="3" placeholder="Qual serviço, comércio ou produto você gostaria de divulgar?" required style="padding:10px 12px; border:1px solid #ccc; border-radius:8px; font-size:14px; resize:vertical;"></textarea>
 
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:12px; margin-bottom:15px; font-size:0.88rem; color:#334155;">
-    <p style="font-weight:700; color:#1e3a8a; margin-bottom:8px;">📋 Planos de Divulgação (Pagamento Único — Sem Comissão):</p>
-    <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
-        <li><strong>🛠️ Profissionais & Comércios:</strong> 3 meses R$ 25 | 6 meses R$ 45 | <strong>1 ano R$ 60</strong></li>
-        <li><strong>🏠 Imóveis:</strong> 3 meses R$ 25 | 6 meses R$ 45 | <strong>1 ano R$ 60</strong></li>
-        <li><strong>🚗 Automóveis:</strong> 4 meses R$ 30 | 6 meses R$ 40 | <strong>1 ano R$ 60</strong></li>
-    </ul>
-    <p style="font-size:0.78rem; color:#64748b; margin-top:8px;">* Inclui botão direto para WhatsApp, descrição detalhada e link para fotos/vídeos.</p>
-</div>
-
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:12px; margin-bottom:4px; font-size:0.88rem; color:#334155;">
+              <p style="font-weight:700; color:#1e3a8a; margin-bottom:8px;">📋 Planos de Divulgação (Pagamento Único — Sem Comissão):</p>
+              <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;">
+                  <li><strong>🛠️ Produtos e Serviços:</strong> 3 meses R$ 25 | 6 meses R$ 45 | <strong>1 ano R$ 60</strong></li>
+                  <li><strong>🏠 Imóveis e Terrenos:</strong> 3 meses R$ 25 | 6 meses R$ 45 | <strong>1 ano R$ 60</strong></li>
+                  <li><strong>🚗 Automóveis e Veículos:</strong> 4 meses R$ 30 | 6 meses R$ 40 | <strong>1 ano R$ 60</strong></li>
+              </ul>
+              <p style="font-size:0.78rem; color:#64748b; margin-top:8px;">* Inclui botão direto para WhatsApp, descrição detalhada e link para fotos/vídeos.</p>
+          </div>
 
           <button type="submit" style="background:#0f2a5e; color:#ffffff; border:none; padding:12px; border-radius:8px; font-size:15px; font-weight:bold; cursor:pointer;">Enviar Solicitação</button>
         </form>
@@ -489,72 +500,109 @@
     </div>
 
     <script>
-        // ESTRUTURA DE GRUPOS E SUBGRUPOS
+        // ESTRUTURA DOS 3 GRANDES GRUPOS
         const estruturaCategorias = [
             {
                 grupo: "Imóveis e Terrenos",
                 icone: "🏢",
-                subgrupos: ["Casas|Apartamentos à Venda", "Terrenos e Lotes", "Locação Residencial|Comercial", "Corretor de Imóveis"]
+                subgrupos: [
+                    "Casas|Apartamentos à Venda",
+                    "Terrenos e Lotes",
+                    "Locação Residencial|Comercial",
+                    "Corretor de Imóveis"
+                ]
             },
             {
                 grupo: "Automóveis e Veículos",
                 icone: "🚗",
-                subgrupos: ["Carros", "Motos", "Utilitários e Carretas", "Peças e Acessórios", "Corretor de Seguros"]
+                subgrupos: [
+                    "Carros",
+                    "Motos",
+                    "Utilitários e Carretas",
+                    "Peças e Acessórios",
+                    "Corretor de Seguros"
+                ]
             },
             {
-                grupo: "Construção, Reforma e Decoração",
-                icone: "🏗️",
-                subgrupos: ["Engenheiros e Arquitetos","Pedreiros e Instaladores de Piso", "Marcenaria e Vidraceiros", "Gesseiros e Pintores", , "Eletricistas e Encanadores", "Redes de Proteção", "Reparos e Manutenção"]
-            },
-            {
-                grupo: "Assessoria Contábil e Jurídica",
-                icone: "⚖️",
-                subgrupos: ["Contadores", "Advogados"]
-            },
-            {
-                grupo: "Limpeza e Organização",
-                icone: "✨",
-                subgrupos: ["Faxineira", "Limpeza e Higienização de Estofados"]
-            },
-            {
-                grupo: "Saúde e Beleza",
-                icone: "💆",
-                subgrupos: ["Fisioterapeuta","Estúdios e Academias","Personal Trainer","Psicologia", "Nutricionistas","Manicure","Cabeleireiro", "Cosméticos e Perfumaria"]
-            },
-            {
-                grupo: "Auto Oficinas",
-                icone: "🔧",
-                subgrupos: ["Auto Elétrica", "Mecânicos", "Auto Center|Borracharia"]
-            },
-            {
-                grupo: "Transporte e Logística",
-                icone: "🚚",
-                subgrupos: ["Táxi e Aplicativo","Vans e Fretados","Entregas e Mudanças"] 
-                      
-            },
-            {
-                grupo: "Tecnologia e Manutenção",
-                icone: "💻",
-                subgrupos: ["Conserto Celular", "Suporte Tecnologia"]
-            },
-          
-            {
-                grupo: "Pets",
-                icone: "🐾",
-                subgrupos: ["Veterinários", "Banho e Tosa", "Cuidadores e DogWalker"]
-            },
-
-            {
-                grupo: "Gastronomia e Alimentação",
-                icone: "🍽️",
-                subgrupos: ["Bolos, Doces e Confeitaria", "Salgados e Festas", "Marmitas e Refeições"]
-            },
-
-            {
-                grupo: "Eventos, Foto e Marketing Digital",
-                icone: "🍹🎥🎵",
-                subgrupos: ["Fotografia, Vídeo e Ensaios", "Marketing Digital e Redes Sociais","Decoração e Organização de Eventos","Buffet", "Som e Animação","Espaços e Salões"]
-            },
+                grupo: "Produtos e Serviços",
+                icone: "🛠️",
+                categorias: [
+                    {
+                        nome: "Construção, Reforma e Decoração",
+                        icone: "🏗️",
+                        subgrupos: [
+                            "Engenheiros e Arquitetos",
+                            "Pedreiros e Instaladores de Piso",
+                            "Marcenaria e Vidraceiros",
+                            "Gesseiros e Pintores",
+                            "Eletricistas e Encanadores",
+                            "Redes de Proteção",
+                            "Reparos e Manutenção"
+                        ]
+                    },
+                    {
+                        nome: "Assessoria Contábil e Jurídica",
+                        icone: "⚖️",
+                        subgrupos: ["Contadores", "Advogados"]
+                    },
+                    {
+                        nome: "Limpeza e Organização",
+                        icone: "✨",
+                        subgrupos: ["Faxineira", "Limpeza e Higienização de Estofados"]
+                    },
+                    {
+                        nome: "Saúde e Beleza",
+                        icone: "💆",
+                        subgrupos: [
+                            "Fisioterapeuta",
+                            "Estúdios e Academias",
+                            "Personal Trainer",
+                            "Psicologia",
+                            "Nutricionistas",
+                            "Manicure",
+                            "Cabeleireiro",
+                            "Cosméticos e Perfumaria"
+                        ]
+                    },
+                    {
+                        nome: "Auto Oficinas",
+                        icone: "🔧",
+                        subgrupos: ["Auto Elétrica", "Mecânicos", "Auto Center|Borracharia"]
+                    },
+                    {
+                        nome: "Transporte e Logística",
+                        icone: "🚚",
+                        subgrupos: ["Táxi e Aplicativo", "Vans e Fretados", "Entregas e Mudanças"]
+                    },
+                    {
+                        nome: "Tecnologia e Manutenção",
+                        icone: "💻",
+                        subgrupos: ["Conserto Celular", "Suporte Tecnologia"]
+                    },
+                    {
+                        nome: "Pets",
+                        icone: "🐾",
+                        subgrupos: ["Veterinários", "Banho e Tosa", "Cuidadores e DogWalker"]
+                    },
+                    {
+                        nome: "Gastronomia e Alimentação",
+                        icone: "🍽️",
+                        subgrupos: ["Bolos, Doces e Confeitaria", "Salgados e Festas", "Marmitas e Refeições"]
+                    },
+                    {
+                        nome: "Eventos, Foto e Marketing Digital",
+                        icone: "🍹🎥🎵",
+                        subgrupos: [
+                            "Fotografia, Vídeo e Ensaios",
+                            "Marketing Digital e Redes Sociais",
+                            "Decoração e Organização de Eventos",
+                            "Buffet",
+                            "Som e Animação",
+                            "Espaços e Salões"
+                        ]
+                    }
+                ]
+            }
         ];
 
         // BANCO DE DADOS DOS PROFISSIONAIS E OPORTUNIDADES
@@ -567,14 +615,15 @@
                 valor: "R$ 190.000,00",
                 ano: "",
                 km: "",
-                midia:"https://youtu.be/0jZUppecBJg",
+                midia: "https://youtu.be/0jZUppecBJg",
                 telefone: "(11) 93715-6188",
                 whatsapp: "5511937156188",
-                instagram: "", 
+                instagram: "",
                 email: "",
-                resumo: "A 30 minutos de São Paulo - Área 20% plana, portão de ferro, rodapé murado, espaço garagem, edícula 2 cômodos, chiqueiro/galinheiro, água/luz regularizadas e árvores frutíferas - 300 pés de café. Negociação direto com o proprietário.Falar com Eduardo."
+                resumo: "A 30 minutos de São Paulo - Área 20% plana, portão de ferro, rodapé murado, espaço garagem, edícula 2 cômodos, chiqueiro/galinheiro, água/luz regularizadas e árvores frutíferas - 300 pés de café. Negociação direto com o proprietário. Falar com Eduardo."
             },
 
+           
             {
                 nome: "Terreno no Cond. Elementum Atibaia (360 m²)",
                 subgrupo: "Terrenos e Lotes",
@@ -1814,7 +1863,7 @@
                 whatsapp: "5511984190149",
                 instagram: "pizzasanchieta",
                 email: "",
-                resumo: "Sempre fazendo a melhor 🍕|Pizzas|Cauzones|Esfihas|Delivery|Tremembé|Tucuruvi|Jaçanã|VilaGalvão e proximidades"
+                resumo: "Sempre fazendo as melhores 🍕Pizzas- Esfihas - Cauzones|Delivery|Tremembé-Tucuruvi-Jaçanã-Vila Galvão e proximidades."
             }, 
 
 
@@ -1846,13 +1895,18 @@
                 instagram: "miedegourmet",
                 email: "",
                 resumo: "Pipocas Artesanais 🍿 Lembrancinhas 🎁 Vendas do milho mush 🌽 Bolos para aniversário, Brigadeiros, doces personalizados 🍫 🍬 🧁"
-            }
+            },
+
+
+
         ];
 
         // Elementos da tela
         const groupsContainer = document.getElementById('groupsContainer');
         const subgroupsSection = document.getElementById('subgroupsSection');
         const subgroupsTitle = document.getElementById('subgroupsTitle');
+        const categoriesList = document.getElementById('categoriesList');
+        const subgroupsSublabel = document.getElementById('subgroupsSublabel');
         const subgroupsContainer = document.getElementById('subgroupsContainer');
         const resultsSection = document.getElementById('resultsSection');
         const selectedSubgroupTitle = document.getElementById('selectedSubgroupTitle');
@@ -1861,46 +1915,111 @@
         const closeAllBtn = document.getElementById('closeAllBtn');
 
         let grupoAtual = null;
+        let categoriaAtual = null;
         let subgrupoAtual = null;
+
+        function atualizarURL(paramsObj) {
+            const novaUrl = new URL(window.location.origin + window.location.pathname);
+            if (paramsObj && typeof paramsObj === 'object') {
+                Object.entries(paramsObj).forEach(([chave, valor]) => {
+                    if (valor) {
+                        novaUrl.searchParams.set(chave, valor);
+                    }
+                });
+            }
+            window.history.replaceState({}, '', novaUrl);
+        }
 
         function carregarGrupos() {
             groupsContainer.innerHTML = '';
             estruturaCategorias.forEach(item => {
                 const btn = document.createElement('button');
+                btn.type = 'button';
                 btn.className = 'group-btn';
                 btn.innerHTML = `<span class="icon">${item.icone}</span><span>${item.grupo}</span>`;
-                
+
                 btn.addEventListener('click', () => {
                     document.querySelectorAll('.group-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    abrirSubgrupos(item);
+                    abrirGrupo(item);
+                    atualizarURL({ grupo: item.grupo });
                 });
 
                 groupsContainer.appendChild(btn);
             });
         }
 
-        function abrirSubgrupos(itemGrupo) {
-            grupoAtual = itemGrupo.grupo;
-            subgrupoAtual = null;
-            resultsSection.style.display = 'none';
-            
-            subgroupsTitle.textContent = `2. Opções em "${itemGrupo.grupo}":`;
+        function renderizarListaSubgrupos(listaSubgrupos) {
             subgroupsContainer.innerHTML = '';
 
-            itemGrupo.subgrupos.forEach(sub => {
+            listaSubgrupos.forEach(sub => {
                 const subBtn = document.createElement('button');
+                subBtn.type = 'button';
                 subBtn.className = 'subgroup-btn';
                 subBtn.textContent = sub;
 
                 subBtn.addEventListener('click', () => {
-                    document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('#subgroupsContainer .subgroup-btn').forEach(b => b.classList.remove('active'));
                     subBtn.classList.add('active');
                     abrirProfissionais(sub);
+                    atualizarURL({
+                        grupo: grupoAtual,
+                        categoria: categoriaAtual,
+                        subgrupo: sub
+                    });
                 });
 
                 subgroupsContainer.appendChild(subBtn);
             });
+        }
+
+        function abrirCategoria(categoriaObj) {
+            categoriaAtual = categoriaObj.nome;
+            subgrupoAtual = null;
+            resultsSection.style.display = 'none';
+            subgroupsSublabel.style.display = 'block';
+            subgroupsSublabel.textContent = `3. Escolha a especialidade em "${categoriaObj.nome}":`;
+            renderizarListaSubgrupos(categoriaObj.subgrupos);
+        }
+
+        function abrirGrupo(itemGrupo) {
+            grupoAtual = itemGrupo.grupo;
+            categoriaAtual = null;
+            subgrupoAtual = null;
+            resultsSection.style.display = 'none';
+            categoriesList.innerHTML = '';
+            subgroupsContainer.innerHTML = '';
+
+            if (Array.isArray(itemGrupo.categorias) && itemGrupo.categorias.length > 0) {
+                subgroupsTitle.textContent = `2. Escolha a categoria em "${itemGrupo.grupo}":`;
+                categoriesList.style.display = 'flex';
+                subgroupsSublabel.style.display = 'none';
+
+                itemGrupo.categorias.forEach(cat => {
+                    const catBtn = document.createElement('button');
+                    catBtn.type = 'button';
+                    catBtn.className = 'subgroup-btn';
+                    catBtn.innerHTML = `${cat.icone ? cat.icone + ' ' : ''}${cat.nome}`;
+
+                    catBtn.addEventListener('click', () => {
+                        document.querySelectorAll('#categoriesList .subgroup-btn').forEach(b => b.classList.remove('active'));
+                        catBtn.classList.add('active');
+                        abrirCategoria(cat);
+                        atualizarURL({
+                            grupo: grupoAtual,
+                            categoria: cat.nome
+                        });
+                        subgroupsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    });
+
+                    categoriesList.appendChild(catBtn);
+                });
+            } else {
+                subgroupsTitle.textContent = `2. Opções em "${itemGrupo.grupo}":`;
+                categoriesList.style.display = 'none';
+                subgroupsSublabel.style.display = 'none';
+                renderizarListaSubgrupos(itemGrupo.subgrupos || []);
+            }
 
             subgroupsSection.style.display = 'block';
             subgroupsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1910,7 +2029,7 @@
             subgrupoAtual = subgrupo;
             selectedSubgroupTitle.textContent = `Indicados em: ${subgrupo}`;
             searchInput.value = '';
-            
+
             resultsSection.style.display = 'block';
             renderizarCards();
             resultsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1921,9 +2040,8 @@
             professionalsList.innerHTML = '';
 
             const filtrados = profissionais.filter(prof => {
-                // Suporta tanto 1 subgrupo (string) quanto vários subgrupos (array)
-                const mesmoSubgrupo = Array.isArray(prof.subgrupo) 
-                    ? prof.subgrupo.includes(subgrupoAtual) 
+                const mesmoSubgrupo = Array.isArray(prof.subgrupo)
+                    ? prof.subgrupo.includes(subgrupoAtual)
                     : prof.subgrupo === subgrupoAtual;
 
                 const regiaoTexto = prof.regiao ? prof.regiao.toLowerCase() : '';
@@ -1933,7 +2051,7 @@
                 const instagramTexto = prof.instagram ? prof.instagram.toLowerCase() : '';
                 const emailTexto = prof.email ? prof.email.toLowerCase() : '';
 
-                const bateBusca = prof.nome.toLowerCase().includes(termo) || 
+                const bateBusca = prof.nome.toLowerCase().includes(termo) ||
                                   prof.resumo.toLowerCase().includes(termo) ||
                                   regiaoTexto.includes(termo) ||
                                   valorTexto.includes(termo) ||
@@ -1952,10 +2070,9 @@
             filtrados.forEach(prof => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                
+
                 const badgeRegiao = prof.regiao ? `<div class="region-badge">📍 Região Atendida: ${prof.regiao}</div>` : '';
 
-                // Monta as tags de Valor, Ano e KM se estiverem preenchidas
                 let badgesInfoHTML = '';
                 if (prof.valor || prof.ano || prof.km) {
                     badgesInfoHTML += `<div class="info-badges-container">`;
@@ -1970,16 +2087,14 @@
                     }
                     badgesInfoHTML += `</div>`;
                 }
-                // Monta o botão de Mídia (Fotos / Vídeos) se estiver preenchido
+
                 let midiaHTML = '';
                 if (prof.midia && prof.midia.trim() !== '') {
                     midiaHTML += `<div class="card-midia-container" style="margin: 10px 0;">`;
-                    midiaHTML += `<a href="${prof.midia}" target="_blank" class="btn-social" style="background-color: #ff0000; color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px;      border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">▶️ Fotos / Vídeos</a>`;
+                    midiaHTML += `<a href="${prof.midia}" target="_blank" class="btn-social" style="background-color: #ff0000; color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">▶️ Fotos / Vídeos</a>`;
                     midiaHTML += `</div>`;
                 }
 
-
-                // Monta os botões de Instagram/Site e E-mail se estiverem preenchidos
                 let extraLinksHTML = '';
                 if (prof.instagram || prof.email) {
                     extraLinksHTML += `<div class="card-extra-links">`;
@@ -1996,7 +2111,6 @@
                     if (prof.email) {
                         extraLinksHTML += `<a href="mailto:${prof.email}" class="btn-social btn-email">✉️ E-mail</a>`;
                     }
-
                     extraLinksHTML += `</div>`;
                 }
 
@@ -2007,7 +2121,7 @@
                         <h3>${prof.nome}</h3>
                         ${badgeRegiao}
                         ${badgesInfoHTML}
-                        ${midiaHTML} <!-- Faltava esta linha aqui! -->
+                        ${midiaHTML}
                         <p class="bio">${prof.resumo}</p>
                     </div>
                     <div class="card-footer">
@@ -2018,7 +2132,7 @@
                         ${extraLinksHTML}
                     </div>
                 `;
-               professionalsList.appendChild(card);
+                professionalsList.appendChild(card);
 
                 const resumoEl = card.querySelector('.bio');
                 if (resumoEl) {
@@ -2040,65 +2154,32 @@
                         resumoEl.insertAdjacentElement('afterend', btnToggle);
                     }
                 }
- 
             });
         }
 
         closeAllBtn.addEventListener('click', () => {
             resultsSection.style.display = 'none';
-            document.querySelectorAll('.subgroup-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#subgroupsContainer .subgroup-btn').forEach(b => b.classList.remove('active'));
             subgrupoAtual = null;
+            atualizarURL({
+                grupo: grupoAtual,
+                categoria: categoriaAtual
+            });
         });
 
         searchInput.addEventListener('input', renderizarCards);
 
         carregarGrupos();
 
-     
-// Direcionamento automático via URL e atualização dinâmica ao clicar
+        // Direcionamento automático via URL ao carregar a página
         window.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const grupoParam = params.get('grupo');
+            const categoriaParam = params.get('categoria');
             const subgrupoParam = params.get('subgrupo');
 
             const normalizar = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 
-            // Função que atualiza a barra de endereço sem recarregar a página
-            const atualizarURL = (tipo, valor) => {
-                const novaUrl = new URL(window.location.origin + window.location.pathname);
-                if (tipo && valor) {
-                    novaUrl.searchParams.set(tipo, valor);
-                }
-                window.history.replaceState({}, '', novaUrl);
-            };
-
-            // 1. Escuta cliques manuais nos Grupos para atualizar a URL
-            document.getElementById('groupsContainer').addEventListener('click', (e) => {
-                const btnGrupo = e.target.closest('div, button');
-                if (btnGrupo && btnGrupo.parentElement.id === 'groupsContainer') {
-                    // Pega o texto limpo do grupo (removendo emojis extras se necessário, ou mantendo o texto)
-                    const nomeGrupo = btnGrupo.innerText.split('\n').pop().trim();
-                    atualizarURL('grupo', nomeGrupo);
-                }
-            });
-
-            // 2. Escuta cliques manuais nos Subgrupos para atualizar a URL
-            document.getElementById('subgroupsContainer').addEventListener('click', (e) => {
-                const btnSub = e.target.closest('.subgroup-btn, button, div');
-                if (btnSub && btnSub.parentElement.id === 'subgroupsContainer') {
-                    const nomeSub = btnSub.textContent.trim();
-                    atualizarURL('subgrupo', nomeSub);
-                }
-            });
-
-            // 3. Limpa a URL quando clicar em "Fechar lista"
-            if (closeAllBtn) {
-                closeAllBtn.addEventListener('click', () => {
-                    atualizarURL(null, null);
-                });
-            }
-
-            // 4. Abre automaticamente se o visitante já chegou por um link direto
             if (grupoParam) {
                 const alvoGrupo = normalizar(grupoParam);
                 const botoesGrupo = document.querySelectorAll('#groupsContainer > div, #groupsContainer button');
@@ -2111,6 +2192,17 @@
                 }
             }
 
+            if (categoriaParam) {
+                const alvoCat = normalizar(categoriaParam);
+                const botoesCat = document.querySelectorAll('#categoriesList .subgroup-btn, #categoriesList button');
+                for (let btnCat of botoesCat) {
+                    if (normalizar(btnCat.textContent).includes(alvoCat)) {
+                        btnCat.click();
+                        break;
+                    }
+                }
+            }
+
             if (subgrupoParam) {
                 const alvoSub = normalizar(subgrupoParam);
                 const botoesGrupo = document.querySelectorAll('#groupsContainer > div, #groupsContainer button');
@@ -2118,9 +2210,10 @@
 
                 for (let btnGrupo of botoesGrupo) {
                     btnGrupo.click();
-                    const botoesSub = document.querySelectorAll('#subgroupsContainer .subgroup-btn, #subgroupsContainer button, #subgroupsContainer > div');
 
-                    for (let btnSub of botoesSub) {
+                    // Subgrupos diretos do grupo
+                    const botoesSubDiretos = document.querySelectorAll('#subgroupsContainer .subgroup-btn, #subgroupsContainer button, #subgroupsContainer > div');
+                    for (let btnSub of botoesSubDiretos) {
                         if (normalizar(btnSub.textContent).includes(alvoSub)) {
                             btnSub.click();
                             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
@@ -2129,17 +2222,31 @@
                         }
                     }
                     if (encontrou) break;
+
+                    // Subgrupos dentro das categorias de Produtos e Serviços
+                    const botoesCat = document.querySelectorAll('#categoriesList .subgroup-btn, #categoriesList button');
+                    for (let btnCat of botoesCat) {
+                        btnCat.click();
+                        const botoesSubCat = document.querySelectorAll('#subgroupsContainer .subgroup-btn, #subgroupsContainer button, #subgroupsContainer > div');
+                        for (let btnSub of botoesSubCat) {
+                            if (normalizar(btnSub.textContent).includes(alvoSub)) {
+                                btnSub.click();
+                                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                                encontrou = true;
+                                break;
+                            }
+                        }
+                        if (encontrou) break;
+                    }
+                    if (encontrou) break;
                 }
 
                 if (!encontrou) {
                     closeAllBtn.click();
-                    atualizarURL(null, null);
+                    atualizarURL({});
                 }
             }
         });
-
-
     </script>
-
 </body>
 </html>
