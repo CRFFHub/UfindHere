@@ -380,6 +380,32 @@
             color: #64748b;
             font-size: 0.9rem;
         }
+
+
+/* Retração de resumo com mais de 14 palavras */
+        .card p.bio.resumo-retraido {
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Ajuste para 2, 3 ou 4 linhas conforme preferir */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.4rem;
+        }
+
+        .btn-ver-mais {
+            background: none;
+            border: none;
+            color: #1e3a8a;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0 0 1rem 0;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-ver-mais:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -527,7 +553,7 @@
                 nome: "Mini Chácara - Terreno em Mairiporã (1.175 m²)",
                 subgrupo: "Terrenos e Lotes",
                 regiao: "Mairiporã - SP",
-                valor: "R$ 184.000,00",
+                valor: "R$ 190.000,00",
                 ano: "",
                 km: "",
                 midia:"https://youtu.be/0jZUppecBJg",
@@ -582,7 +608,7 @@
                 whatsapp: "5519999521672",
                 instagram: "andersoncorretor_", 
                 email: "",
-                resumo: "Vou te ajudar a encontrar o imóvel que você sempre sonhou 🏡 🫵🏾 7 anos de experiência! Fale comigo agora."
+                resumo: "Vou te ajudar a encontrar o imóvel que você sempre sonhou🏡 🫵🏾7 anos de experiência! Fale comigo agora."
             },
 
            {
@@ -1964,7 +1990,29 @@
                         ${extraLinksHTML}
                     </div>
                 `;
-                professionalsList.appendChild(card);
+               professionalsList.appendChild(card);
+
+                const resumoEl = card.querySelector('.bio');
+                if (resumoEl) {
+                    const palavras = resumoEl.textContent.trim().split(/\s+/).filter(Boolean);
+
+                    if (palavras.length > 14) {
+                        resumoEl.classList.add('resumo-retraido');
+
+                        const btnToggle = document.createElement('button');
+                        btnToggle.type = 'button';
+                        btnToggle.className = 'btn-ver-mais';
+                        btnToggle.textContent = '+ Ver mais';
+
+                        btnToggle.addEventListener('click', () => {
+                            const estaRetraido = resumoEl.classList.toggle('resumo-retraido');
+                            btnToggle.textContent = estaRetraido ? '+ Ver mais' : '− Ver menos';
+                        });
+
+                        resumoEl.insertAdjacentElement('afterend', btnToggle);
+                    }
+                }
+ 
             });
         }
 
