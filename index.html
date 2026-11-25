@@ -391,7 +391,7 @@
             font-size: 0.9rem;
         }
 
-        /* Retração de resumo com mais de 14 palavras */
+        /* Retração de resumo com mais de 7 palavras */
         .card p.bio.resumo-retraido {
             display: -webkit-box;
             -webkit-line-clamp: 3;
@@ -502,16 +502,7 @@
     <script>
         // ESTRUTURA DOS 3 GRANDES GRUPOS
         const estruturaCategorias = [
-            {
-                grupo: "Imóveis e Terrenos",
-                icone: "🏢",
-                subgrupos: [
-                    "Casas|Apartamentos à Venda",
-                    "Terrenos e Lotes",
-                    "Locação Residencial|Comercial",
-                    "Corretor de Imóveis"
-                ]
-            },
+            
             {
                 grupo: "Automóveis e Veículos",
                 icone: "🚗",
@@ -523,6 +514,18 @@
                     "Corretor de Seguros"
                 ]
             },
+  
+            {
+                grupo: "Imóveis e Terrenos",
+                icone: "🏢",
+                subgrupos: [
+                    "Casas|Apartamentos à Venda",
+                    "Terrenos e Lotes",
+                    "Locação Residencial|Comercial",
+                    "Corretor de Imóveis"
+                ]
+            },
+            
             {
                 grupo: "Produtos e Serviços",
                 icone: "🛠️",
@@ -531,11 +534,11 @@
                         nome: "Construção, Reforma e Decoração",
                         icone: "🏗️",
                         subgrupos: [
-                            "Engenheiros e Arquitetos",
-                            "Pedreiros e Instaladores de Piso",
-                            "Marcenaria e Vidraceiros",
-                            "Gesseiros e Pintores",
                             "Eletricistas e Encanadores",
+                            "Engenheiros e Arquitetos",
+                            "Gesseiros e Pintores",
+                            "Marcenaria e Vidraceiros",
+                            "Pedreiros e Instaladores de Piso",
                             "Redes de Proteção",
                             "Reparos e Manutenção"
                         ]
@@ -554,30 +557,30 @@
                         nome: "Saúde e Beleza",
                         icone: "💆",
                         subgrupos: [
-                            "Fisioterapeuta",
-                            "Estúdios e Academias",
-                            "Personal Trainer",
-                            "Psicologia",
-                            "Nutricionistas",
-                            "Manicure",
                             "Cabeleireiro",
-                            "Cosméticos e Perfumaria"
+                            "Cosméticos e Perfumaria",
+                            "Estúdios e Academias",                            
+                            "Fisioterapeuta",
+                            "Manicure, Pedicure,Podóloga",
+                            "Nutricionistas",   
+                            "Personal Trainer",
+                            "Psicologia"
                         ]
                     },
                     {
                         nome: "Auto Oficinas",
                         icone: "🔧🚗",
-                        subgrupos: ["Auto Elétrica", "Mecânicos", "Auto Center|Borracharia"]
+                        subgrupos: ["Auto Center|Borracharia","Auto Elétrica", "Mecânicos"]
                     },
                     {
                         nome: "Transporte e Logística",
                         icone: "🚚",
-                        subgrupos: ["Táxi e Aplicativo", "Vans e Fretados", "Entregas e Mudanças"]
+                        subgrupos: ["Entregas e Mudanças", "Vans e Fretados","Táxi e Aplicativo"]
                     },
                     {
                         nome: "Tecnologia e Assistência Técnica",
                         icone: "🔧💻",
-                        subgrupos: ["Conserto Celular", "Suporte Tecnologia","Assistência Técnica"]
+                        subgrupos: ["Assistência Técnica","Conserto Celular", "Suporte Tecnologia"]
                     },
 
                     {
@@ -593,27 +596,28 @@
                             // Idosos
                             "Cuidadores de Idosos",
                             // Pets
-                            "Veterinários",
                             "Banho e Tosa",
-                            "Cuidadores de Pets"
+                            "Cuidadores de Pets",
+                            "Veterinários"
                         ]
                     },
 
                     {
                         nome: "Gastronomia e Alimentação",
                         icone: "🍽️",
-                        subgrupos: ["Bolos, Doces e Confeitaria", "Salgados e Festas", "Marmitas e Refeições"]
+                        subgrupos: ["Bolos, Doces e Confeitaria","Marmitas e Refeições", "Salgados e Festas"]
                     },
                     {
                         nome: "Eventos, Foto e Marketing Digital",
                         icone: "🍹🎥🎵",
                         subgrupos: [
-                            "Fotografia, Vídeo e Ensaios",
-                            "Marketing Digital e Redes Sociais",
-                            "Decoração e Organização de Eventos",
-                            "Buffet",
-                            "Som e Animação",
-                            "Espaços e Salões"
+                             "Buffet",                            
+                             "Decoração e Organização de Eventos",
+                             "Espaços e Salões", 
+                             "Fotografia, Vídeo e Ensaios",
+                             "Marketing Digital e Redes Sociais",
+                             "Som e Animação",
+                            
                         ]
                     }
                 ]
@@ -782,6 +786,38 @@
                 email: "",
                 resumo: "Quase 30 anos de experiência em seguro de automóveis e especialista em seguro de táxi."
             },
+            
+           {
+                nome: "And&Con Corretora de Seguros",
+                subgrupo: "Corretor de Seguros",
+                regiao: "Brasil",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11) 2987-3030",
+                whatsapp: "5511947833330",
+                instagram: "", 
+                email: "andcon@andconseguros.com.br",
+                resumo: "Somos uma corretora de seguros conceituada, com mais de dezoito anos no mercado.Trabalhamos com diversos segmentos de seguros: Automóvel, Residência, Vida, RC Médicos e Dentistas, Previdência, Seguro Saúde, Equipamentos Portáteis, empresarial e condomínio. "
+            },
+
+            
+             {
+                nome: "TecSeg Consultoria Seguros e Convenios",
+                subgrupo: "Corretor de Seguros",
+                regiao: "Brasil",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11)95149-5956",
+                whatsapp: "5511951495956",
+                instagram: "", 
+                email: "tecsegconsultoriaemseguros@gmail.com",
+                resumo: "Seguros e convênios em geralAssistência 24 horas:Allianz,Porto, Azul,Bradesco,HDI, Liberty, Maprfre, Zurich, Suhai,Pet"
+            },
+
 
             // Construção, Reforma e Decoração
             {
@@ -959,6 +995,22 @@
                 resumo: "Móveis Planejados sob medida 🛠️Cozinhas • Quartos • Banheiros • Salas.Entrega rápida • Qualidade garantida"
             }, 
             
+            {
+                nome: "Marcenaria Siqueira Filho",
+                subgrupo: "Marcenaria e Vidraceiros",
+                regiao: "Grande São Paulo",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11) 96191-6975",
+                whatsapp: "5511961916975",
+                instagram: "",
+                email: "",
+                resumo: "Móveis Planejados sob medida 🛠️Cozinhas • Quartos • Banheiros • Salas. Profissional com ótimas recomendações R. Alfonsus Guimarães 57 - Centro Guarulhos"
+            }, 
+
+
             {
                 nome: "Java Marcenária",
                 subgrupo: "Marcenaria e Vidraceiros",
@@ -2512,7 +2564,7 @@
                 if (resumoEl) {
                     const palavras = resumoEl.textContent.trim().split(/\s+/).filter(Boolean);
 
-                    if (palavras.length > 14) {
+                    if (palavras.length > 7) {
                         resumoEl.classList.add('resumo-retraido');
 
                         const btnToggle = document.createElement('button');
