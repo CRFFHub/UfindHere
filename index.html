@@ -414,16 +414,63 @@
         .btn-ver-mais:hover {
             text-decoration: underline;
         }
+
+/* Logo circular sobrepondo a região do título no cabeçalho */
+        .header-logo {
+            width: 225px;
+            height: 225px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: -0.6rem auto 1rem auto;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 0 30px rgba(0, 229, 255, 0.48), 0 12px 24px rgba(0, 0, 0, 0.30);
+        }
+
+        /* Acessibilidade e SEO mantendo o H1 sem duplicar visualmente */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Se quiser que o círculo avance ainda mais para baixo sobre a transição do header */
+        header.header-overlap {
+            padding-bottom: 4.2rem;
+        }
+
+        header.header-overlap .header-logo {
+            margin-bottom: -3.2rem;
+        }
+
+        header.header-overlap .header-logo + .sr-only + p {
+            margin-top: 3.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .header-logo {
+                width: 184px;
+                height: 184px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>UfindHere</h1>
-        <p>Encontre profissionais, produtos e oportunidades de compra e venda</p>
-        <!-- Botão rápido no topo -->
-        <button type="button" onclick="document.getElementById('modalAnuncie').style.display='flex'" class="header-cta" style="border:none; cursor:pointer; font-family:inherit;">📢 Quer entrar na lista? Anuncie aqui</button>
-    </header>
+    <header class="site-header">
+    <img src="UFHLogoLight.jpg" alt="UfindHere" class="header-logo">
+    <h1 class="sr-only">UfindHere</h1>
+    <p>Encontre profissionais, produtos e oportunidades de compra e venda</p>
+    <!-- Botão rápido no topo -->
+    <button type="button" onclick="document.getElementById('modalAnuncie').style.display='flex'" class="header-cta" style="border:none; cursor:pointer; font-family:inherit;">📢 Quer entrar na lista? Anuncie aqui</button>
+</header>
 
     <main class="container">
         <h2 class="section-label">1. Selecione a área desejada:</h2>
@@ -505,7 +552,7 @@
             
             {
                 grupo: "Automóveis e Veículos",
-                icone: "🚗",
+                icone: "🚗🏍️",
                 subgrupos: [
                     "Carros",
                     "Motos",
@@ -517,7 +564,7 @@
   
             {
                 grupo: "Imóveis e Terrenos",
-                icone: "🏢",
+                icone: "🏢🏡",
                 subgrupos: [
                     "Casas|Apartamentos à Venda",
                     "Terrenos e Lotes",
@@ -528,7 +575,7 @@
             
             {
                 grupo: "Produtos e Serviços",
-                icone: "🛠️",
+                icone: "📦🛠️",
                 categorias: [
                     
                     {
@@ -616,7 +663,7 @@
 
                      {
                         nome: "Saúde e Beleza",
-                        icone: "💆",
+                        icone: "🩺💅",
                         subgrupos: ["Cabeleireiro","Cosméticos e Perfumaria","Estúdios e Academias","Fisioterapeuta",
                                     "Manicure,Pedicure,Podóloga","Nutricionistas","Personal Trainer","Psicologia"]
                     }
@@ -1468,7 +1515,7 @@
             },
             {
                 nome: "Adriana Lima Nails",
-                subgrupo: "Manicure, Pedicure,Podóloga",
+                subgrupo: "Manicure,Pedicure,Podóloga",
                 regiao: "Zona Norte - São Paulo e Região",
                 valor: "",
                 ano: "",
@@ -1482,7 +1529,7 @@
             },
             {
                 nome: "Ruana Correa Nails",
-                subgrupo: "Manicure, Pedicure,Podóloga",
+                subgrupo: "Manicure,Pedicure,Podóloga",
                 regiao: "Guarulhos, Zona Norte São Paulo e Região",
                 valor: "",
                 ano: "",
@@ -1497,7 +1544,7 @@
 
             {
                 nome: "Estúdio Bella Forever",
-                subgrupo: ["Manicure, Pedicure,Podóloga","Cabeleireiro"],
+                subgrupo: ["Manicure,Pedicure,Podóloga","Cabeleireiro"],
                 regiao: "Av Guapira Tucuruvi - Zona Norte",
                 valor: "",
                 ano: "",
@@ -1510,7 +1557,55 @@
                 resumo: "Cabeleireira, Manicure e Pedicure, Unhas de gel, SPA dos Pés e mãos,Design de Sobrancelhas, Brow Lamination, Lash Lifting"
             },   
 
-            
+            {
+                nome: "Roseli Podóloga",
+                subgrupo: "Manicure,Pedicure,Podóloga",
+                regiao: "Guarulhos e Zona Norte",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11) 94244-8687",
+                whatsapp: "5511942448687",
+                instagram: "",
+                email: "",
+                resumo: "Podologia Preventiva, Unha Encravada, Calos e Calosidades, Tratamento de Micoses, Correção com Órtese"
+
+            },
+             
+             {
+                nome: "Jaque Podologia",
+                subgrupo: "Manicure,Pedicure,Podóloga",
+                regiao: "Zona Norte",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11) 96668-1061",
+                whatsapp: "5511966681061",
+                instagram: "jackpodologiia",
+                email: "",
+                resumo: "Formada no Senac desde 2010🎓Tratamos; calo, calosidade, onicocriptose,verruga plantar,e outros👣"
+
+            },
+
+
+            {
+                nome: "Solange Alves Podóloga",
+                subgrupo: "Manicure,Pedicure,Podóloga",
+                regiao: "Zona Norte",
+                valor: "",
+                ano: "",
+                km: "",
+                midia:"",
+                telefone: "(11) 96652-8076",
+                whatsapp: "5511966528076",
+                instagram: "",
+                email: "",
+                resumo: "Podologia Preventiva, Unha Encravada, Calos e Calosidades, Tratamento de Micoses, Correção com Órtese"
+
+            },
+
 
              {
                 nome: "Fátima Cristina da Silva",
